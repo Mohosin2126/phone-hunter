@@ -1,1 +1,7 @@
-console.log("hello this is me ")
+const loadPhone = async()=>{
+    const res = await fetch("https://openapi.programming-hero.com/api/phones?search=iphone")
+    const data = await res.json()
+    const phone = data.data
+    console.log(phone)
+}
+loadPhone()
