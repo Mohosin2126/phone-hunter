@@ -8,6 +8,14 @@ const loadPhone = async(searchText)=>{
 const displayPhone=phones=>{
     const phoneContainer=document.getElementById("card-container")
    phoneContainer.textContent=" "
+   const allPhone=document.getElementById("showAll")
+   if(phones.length>15){
+    allPhone.classList.remove("hidden")
+   }
+   else{
+    allPhone.classList.add("hidden")
+   }
+   phones=phones.slice(0,15)
     phones.forEach(phone=>{
 const phoneCard=document.createElement("div")
 phoneCard.innerHTML=`
