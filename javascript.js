@@ -1,21 +1,24 @@
-const loadPhone = async(searchText)=>{
+const loadPhone = async(searchText,show)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     const data = await res.json()
     const phone = data.data
-    displayPhone(phone)
+    displayPhone(phone,show)
 }
 
-const displayPhone=phones=>{
+const displayPhone=(phones,show)=>{
     const phoneContainer=document.getElementById("card-container")
    phoneContainer.textContent=" "
    const allPhone=document.getElementById("showAll")
-   if(phones.length>15){
+   if(phones.length>15 && !show){
     allPhone.classList.remove("hidden")
    }
    else{
     allPhone.classList.add("hidden")
    }
-   phones=phones.slice(0,15)
+   if(!show){
+    phones=phones.slice(0,15)
+   }
+   
     phones.forEach(phone=>{
 const phoneCard=document.createElement("div")
 phoneCard.innerHTML=`
@@ -38,11 +41,11 @@ phoneCard.innerHTML=`
 
 // search button 
 
-const handleSearch=()=>{
+const handleSearch=(show)=>{
     toggle(true)
     const searchField=document.getElementById("search-field")
     const searchText=searchField.value 
-    loadPhone(searchText)
+    loadPhone(searchText,show)
 }
  const toggle=(isLoding)=>{
     const loader=document.getElementById("loader")
@@ -53,5 +56,12 @@ const handleSearch=()=>{
         loader.classList.add("hidden")
     }
  }
+ 
+ const handleShowAll=()=>{
+    handleSearch(true)
+ }
+
+
+
 
 loadPhone()
