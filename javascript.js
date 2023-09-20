@@ -31,17 +31,27 @@ phoneCard.innerHTML=`
 </div>
  `
  phoneContainer.appendChild(phoneCard)
-    })
+    });
+
+    toggle(false)
 }
 
 // search button 
 
 const handleSearch=()=>{
+    toggle(true)
     const searchField=document.getElementById("search-field")
     const searchText=searchField.value 
     loadPhone(searchText)
 }
+ const toggle=(isLoding)=>{
+    const loader=document.getElementById("loader")
+    if(isLoding){
+        loader.classList.remove("hidden")
+    }
+    else{
+        loader.classList.add("hidden")
+    }
+ }
 
-
-
-// loadPhone()
+loadPhone()
