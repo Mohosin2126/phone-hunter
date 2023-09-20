@@ -28,7 +28,7 @@ phoneCard.innerHTML=`
   <div class="card-body">
     <h2 class="text-center text-xl font-semibold mb-2">${phone.phone_name}</h2>
     <div class="card-actions justify-center mt-2">
-    <button class="btn btn-outline btn-success">Buy Now</button>
+    <button onclick="handleDetails('${phone.slug}')"  class="btn btn-outline btn-success">Show Details</button>
     </div>
   </div>
 </div>
@@ -62,6 +62,9 @@ const handleSearch=(show)=>{
  }
 
 
-
+const handleDetails= async(id)=>{
+    const res= await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data =await res.json()
+}
 
 loadPhone()
