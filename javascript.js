@@ -25,4 +25,12 @@ const phoneCard=document.createElement("div")
     })
 }
 
+// search button 
+
+const handleSearch=()=>{
+    console.log("hello this is me ")
+}
+
+
+
 loadPhone()
